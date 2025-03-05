@@ -4,7 +4,7 @@ from datetime import datetime
 
 # Government real estate data sources
 GOV_SOURCES = {
-    "US": "https://files.zillowstatic.com/research/public/City_Zhvi_AllHomes.csv",
+   https://www.fhfa.gov/DataTools/Downloads/Pages/House-Price-Index.aspx
 }
 
 # FastAPI Endpoint
