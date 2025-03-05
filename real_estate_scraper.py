@@ -4,7 +4,7 @@ from datetime import datetime
 
 # Government real estate data sources
 GOV_SOURCES = {
-   "https://www.fhfa.gov/DataTools/Downloads/Pages/House-Price-Index.aspx"
+    "US": "https://catalog.data.gov/dataset/real-estate-sales-data.csv",
 }
 
 # FastAPI Endpoint
