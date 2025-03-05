@@ -1,8 +1,9 @@
-import os
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends 
 from sqlalchemy import create_engine, Column, Integer, Float, String, Date
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
+import os
+
 
 # Read DATABASE_URL from the environment
 DATABASE_URL = os.getenv("DATABASE_URL")
