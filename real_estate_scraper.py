@@ -4,8 +4,9 @@ from datetime import datetime
 
 # Government real estate data sources
 GOV_SOURCES = {
-    "US": "https://catalog.data.gov/dataset/real-estate-sales-data.csv",
+    "US": "https://www.fhfa.gov/DataTools/Downloads/Documents/HPI/HPI_AT_A_GLANCE.csv"
 }
+
 
 # FastAPI Endpoint
 API_URL = "https://worldworth.onrender.com/add-price"
