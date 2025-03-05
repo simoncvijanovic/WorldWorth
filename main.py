@@ -4,6 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from pydantic import BaseModel
 from datetime import date
+from typing import Optional
 import os
 
 # Read DATABASE_URL from environment variables
@@ -66,3 +67,23 @@ def add_price(price_data: PriceHistoryCreate, db: Session = Depends(get_db)):
 def get_price_history(property_id: str, db: Session = Depends(get_db)):
     records = db.query(PropertyPriceHistory).filter(PropertyPriceHistory.property_id == property_id).all()
     return {"property_id": property_id, "price_history": records}
+
+# Endpoint to fetch price history by location and date range
+@app.get("/price-history/")
+def get_price_history_filtered(
+    location: Optional[str] = None,
+    start_date: Optional[date] = None,
+    end_date: Optional[date] = None,
+    db: Session = Depends(get_db)
+):
+    query = db.query(PropertyPriceHistory)
+    
+    if location:
+        query = query.filter(PropertyPriceHistory.location.ilike(f"%{location}%"))
+    if start_date:
+        query = query.filter(PropertyPriceHistory.date_sold >= start_date)
+    if end_date:
+        query = query.filter(PropertyPriceHistory.date_sold <= end_date)
+
+    records = query.all()
+    return {"price_history": records}
